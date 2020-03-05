@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project>
-  <executable name="dist/default/production/CoE115_Lab1.X.production.elf">
+  <executable name="dist/default/production/CoE115.production.elf">
     <memory name="data">
       <units>bytes</units>
       <length>8192</length>
@@ -11,8 +11,8 @@
     <memory name="program">
       <units>bytes</units>
       <length>65268</length>
-      <used>630</used>
-      <free>64638</free>
+      <used>381</used>
+      <free>64887</free>
     </memory>
   </executable>
 </project>
