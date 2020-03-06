@@ -36,7 +36,7 @@ int main(void) {
     AD1CHS = 0x0009; //channel 0 positive input is AN9 for MUXA
     AD1CSSL = 0x0000;
     TRISA = 0x0000;
-    TRISB = 0xFFF0; //E = 1110, 8 = 1000, 12-4578
+    TRISB = 0xFF00; //E = 1110, 8 = 1000, 12-4578
     LATB = 0x0000;
 
     //enable change notification interrupt
@@ -60,6 +60,16 @@ int main(void) {
         LATB = ~0x0000;
         __delay_ms(62/2 + ((float)adcvalue/1023)*938/2);
         LATB = ~0x0008;
+        __delay_ms(62/2 + ((float)adcvalue/1023)*938/2);
+        LATB = ~0x0000;
+        __delay_ms(62/2 + ((float)adcvalue/1023)*938/2);
+        LATB = ~0x0000;
+        LATBbits.LATB5 = 0;
+        __delay_ms(62/2 + ((float)adcvalue/1023)*938/2);
+        LATB = ~0x0000;
+        __delay_ms(62/2 + ((float)adcvalue/1023)*938/2);
+        LATB = ~0x0000;
+        LATBbits.LATB7 = 0;
         __delay_ms(62/2 + ((float)adcvalue/1023)*938/2);
         LATB = ~0x0000;
         __delay_ms(62/2 + ((float)adcvalue/1023)*938/2);

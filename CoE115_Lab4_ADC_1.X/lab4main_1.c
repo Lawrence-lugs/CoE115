@@ -35,7 +35,7 @@ int main(void) {
     AD1CHS = 0x0009; //channel 0 positive input is AN9 for MUXA
     AD1CSSL = 0x0000;
     TRISA = 0x0000;
-    TRISB = 0xFFF0; //E = 1110, 8 = 1000, 12-4578
+    TRISB = 0xFE00; //E = 1110, 8 = 1000, 12-4578
     LATB = 0x0002;
 
     //enable change notification interrupt
@@ -46,20 +46,26 @@ int main(void) {
     AD1CON1bits.ADON =1;
 
     while(1){
-        if(adcvalue < 1023/5){
-            LATB = ~0x0000;
-        }
-        else if (adcvalue < 2*1023/5){
+        if(adcvalue < 1023/6.0){
             LATB = ~0x0001;
         }
-        else if (adcvalue < 3*1023/5){
+        else if (adcvalue < 2*1023/6.0){
             LATB = ~0x0003;
         }
-        else if (adcvalue < 4*1023/5){
+        else if (adcvalue < 3*1023/6.0){
             LATB = ~0x0007;
         }
-        else{
+        else if (adcvalue < 4*1023/6.0){
             LATB = ~0x000F;
+        }
+        else if (adcvalue < 852){
+            LATB = ~0x000F;
+            LATBbits.LATB5 = 0;
+        }
+        else if (adcvalue < 1023){
+            LATB = ~0x000F;
+            LATBbits.LATB5 = 0;
+            LATBbits.LATB7 = 0;
         }
     }
     return 0;
